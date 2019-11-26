@@ -34,13 +34,26 @@
       .selectionDispatcher(d3.dispatch(dispatchString))
       ("#scatterplot", data);
 
+//create a table on html
+    let htmltable = maketable()
+      .selectionDispatcher(d3.dispatch(dispatchString))
+      ("#table",data, ['year','poverty','murder','unemployment']);
+
+
     // When the line chart selection is updated via brushing, 
-    // tell the scatterplot to update it's selection (linking)
-    lcYearPoverty.selectionDispatcher().on(dispatchString, spUnemployMurder.updateSelection);
+    // tell the other charts to update it's selection (linking)
+    lcYearPoverty.selectionDispatcher().on(dispatchString+".lc-to-sp", spUnemployMurder.updateSelection);
+    lcYearPoverty.selectionDispatcher().on(dispatchString+".lc-to-tab", htmltable.updateSelection);
 
     // When the scatterplot selection is updated via brushing, 
-    // tell the line chart to update it's selection (linking)
-    spUnemployMurder.selectionDispatcher().on(dispatchString, lcYearPoverty.updateSelection);
+    // tell the other charts to update it's selection (linking)
+    spUnemployMurder.selectionDispatcher().on(dispatchString+".sp-to-lc", lcYearPoverty.updateSelection);
+    spUnemployMurder.selectionDispatcher().on(dispatchString+".sp-to-tab", htmltable.updateSelection);
+
+    // When the table selection is updated via brushing, 
+    // tell the other charts to update it's selection (linking)
+    htmltable.selectionDispatcher().on(dispatchString+".tab-to-lc", lcYearPoverty.updateSelection);
+    htmltable.selectionDispatcher().on(dispatchString+".tab-to-sp", spUnemployMurder.updateSelection);
   });
 
 })());

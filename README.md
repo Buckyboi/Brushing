@@ -4,7 +4,7 @@ This assignment will help you get started with brushing and linking. Please look
 
 ## The Associated GitHub Pages Website
 
-This web page is served automatically from the default `gh-pages` branch at https://northeastern-ds-4200-f19-staff.github.io/Assignment--Brushing-and-Linking-in-D3/
+This web page is served automatically from the default `gh-pages` branch at https://github.com/Buckyboi/Brushing
 
 ## Setup
 
